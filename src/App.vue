@@ -8,7 +8,9 @@
     <Header v-bind:hello="hello" @test="handleTest($event)"/>
     <router-view @home="handleHome($event)"/>
     <Carousel />
-    <Footer/>
+    <Footer v-bind:info="info"/>
+    <h1>API CALL:</h1>
+      {{info}}
   </div>
 </template>
 
@@ -16,6 +18,7 @@
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import Carousel from './components/Carousel.vue'
+import axios from 'axios'
   export default {
     name:'App',
     components:{
@@ -33,8 +36,14 @@ import Carousel from './components/Carousel.vue'
     },
     data:function(){
       return {
-        hello:'World'
+        hello:'World',
+        info:null
       }
+    },
+    mounted(){
+      axios
+      .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+      .then(response => (this.info = response.data.bpi))
     }
   }
 
