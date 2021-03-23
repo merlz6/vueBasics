@@ -3,10 +3,10 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-        <router-link to="/AnotherView">AnotherView</router-link>
+        <router-link :to="{name:'AnotherView', query:{hello:this.hello}}" >AnotherView</router-link>
     </div>
-    <Header />
-    <router-view/>
+    <Header v-bind:hello="hello" @test="handleTest($event)"/>
+    <router-view @home="handleHome($event)"/>
     <Carousel />
     <Footer/>
   </div>
@@ -22,6 +22,19 @@ import Carousel from './components/Carousel.vue'
       Header,
       Footer,
       Carousel
+    },
+    methods:{
+      handleTest:function(event){
+        console.log(event)
+      },
+      handleHome:function(event){
+        console.log(event)
+      }
+    },
+    data:function(){
+      return {
+        hello:'World'
+      }
     }
   }
 
