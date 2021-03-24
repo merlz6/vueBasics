@@ -11,6 +11,11 @@
     <Footer v-bind:info="info"/>
     <h1>API CALL:</h1>
       {{info}}
+
+      <Form message="message"/>
+      <p>
+        {{message}}
+      </p>
   </div>
 </template>
 
@@ -18,13 +23,15 @@
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import Carousel from './components/Carousel.vue'
+import Form from './components/Form.vue'
 import axios from 'axios'
   export default {
     name:'App',
     components:{
       Header,
       Footer,
-      Carousel
+      Carousel,
+      Form
     },
     methods:{
       handleTest:function(event){
@@ -37,7 +44,8 @@ import axios from 'axios'
     data:function(){
       return {
         hello:'World',
-        info:null
+        info:null,
+        message:''
       }
     },
     mounted(){
